@@ -33,18 +33,17 @@ typedef struct
     int clientFd;
 } admin;
 
-typedef struct sockaddr;
+struct sockaddr_in serverAddr;
 
 //Queue methods
 queue *queue_ctor(void);
 void queue_dtor (queue *);
 void queue_push (queue *,char *);
-char queue_pop (queue *);
+char* queue_pop (queue *);
 
 //Server methods
 void chatInit (int);
-void build_message (char *,char *,char *);
-void bind (struct sockaddr *addr, int, long);
+void bind (struct sockaddr_in *serverAddr, int, long);
 void removeClient (server *, int);
 
 //Admin methods
