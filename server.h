@@ -1,54 +1,66 @@
+
+#include <netinet/in.h>
+#include <arpa/inet.h> //socket libraries
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
+#include <string.h>
+#include <pthread.h>
+#include <sys/types.h>
+#include <signal.h>
+
 #ifndef _SERVER_H
 #define _SERVER_H
-#include <pthread.h>
-#include <winsock.h>
 
+#define MAX_CLIENTS 100
+#define BUFFER_SZ 2048
 
-#define MAX 1024
-/*
-Queue struct declaration
-*/
-typedef struct 
-{
-    char *buffer [MAX];
-    int head, tail;
-    int full, empty;
-    pthread_mutex_t *mutex;
-    pthread_cond_t *notFull, *notEmpty;
-} queue;
+static _Atomic unsigned int cli_count = 0;
+static int uid = 10;
 
-typedef struct 
-{
-    fd_set serverFd;
-    int sockectFd;
-    int clientSokecket [MAX];
-    int clientNum;
-    pthread_mutex_t *clientMutex;
-    queue *queue;
-} server;
+/* Client structure */
+typedef struct{
+	struct sockaddr_in address;
+	int sockfd;
+	int uid;
+	char name[32];
+} client_t;
 
-typedef struct 
-{
-    server *server;
-    int clientFd;
-} admin;
+client_t *clients[MAX_CLIENTS];
 
-struct sockaddr_in serverAddr;
+pthread_mutex_t clients_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-//Queue methods
-queue *queue_ctor(void);
-void queue_dtor (queue *);
-void queue_push (queue *,char *);
-char* queue_pop (queue *);
+void str_overwrite_stdout() {
 
-//Server methods
-void chatInit (int);
-void bind (struct sockaddr_in *serverAddr, int, long);
-void removeClient (server *, int);
+}
 
-//Admin methods
-void* adminInit (void *);
-void* admin_SetUp (void *);
-void* admin_message (void *);
+void str_trim_lf (char* arr, int length) {
+
+}
+
+void print_client_addr(struct sockaddr_in addr){
+
+}
+
+/* Add clients to queue */
+void queue_add(client_t *cl){
+
+}
+
+/* Remove clients to queue */
+void queue_remove(int uid){
+
+}
+
+/* Send message to all clients except sender */
+void send_message(char *s, int uid){
+
+}
+
+/* Handle all communication with the client */
+void *handle_client(void *arg){
+
+}
 
 #endif
