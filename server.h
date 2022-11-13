@@ -31,36 +31,22 @@ client_t *clients[MAX_CLIENTS];
 
 pthread_mutex_t clients_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-void str_overwrite_stdout() {
+void str_overwrite_stdout();
 
-}
+void str_trim_lf (char* arr, int length);
 
-void str_trim_lf (char* arr, int length) {
-
-}
-
-void print_client_addr(struct sockaddr_in addr){
-
-}
+void print_client_addr(struct sockaddr_in addr);
 
 /* Add clients to queue */
-void queue_add(client_t *cl){
-
-}
+void queue_add(client_t *cl);
 
 /* Remove clients to queue */
-void queue_remove(int uid){
-
-}
+void queue_remove(int uid);
 
 /* Send message to all clients except sender */
-void send_message(char *s, int uid){
-
-}
+void send_message(char *s, int uid);
 
 /* Handle all communication with the client */
-void *handle_client(void *arg){
-
-}
+void *handle_client(void *arg);
 
 #endif
