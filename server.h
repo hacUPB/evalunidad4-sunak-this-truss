@@ -31,9 +31,9 @@ client_t *clients[MAX_CLIENTS];
 
 pthread_mutex_t clients_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-void str_overwrite_stdout();
+void str_overwrite_stdout(); //libera el buffer del stream
 
-void str_trim_lf (char* arr, int length);
+void str_trim_lf (char* arr, int length); //determina el final de cada mensaje
 
 void print_client_addr(struct sockaddr_in addr);
 
